@@ -1,0 +1,19 @@
+﻿@model Double
+@{
+    ViewBag.Title = "QuizResult";
+}
+
+<div style="height: 30px"></div>
+
+<div class="centralen-kontent">
+<h3>
+    Your score on the quiz was:
+    @Html.DisplayFor(modelItem => Model)
+</h3>
+
+
+<div style="height: 30px"></div>
+
+@Html.ActionLink("Back", "Index")
+
+</div>

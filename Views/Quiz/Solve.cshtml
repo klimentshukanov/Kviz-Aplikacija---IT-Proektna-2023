@@ -1,0 +1,44 @@
+﻿@model Kviz_Aplikacija___IT_Proektna_2023.Models.SolveQuizVM
+
+@{
+    ViewBag.Title = "Solve";
+}
+
+
+<div style="height: 30px"></div>
+
+<div class="centralen-kontent">
+
+<form method="post">
+
+    @{ int count = 1;}
+
+    @{ foreach (var question in Model.questions)
+        {
+
+            
+
+            <div style="font-size: 20px; font-weight: bold">@count. @Html.DisplayFor(questionItem => question.QuestionText)</div>
+
+            foreach (var choice in Model.choices)
+            {
+
+                if (choice.QuestionID.Equals(question.QuestionID))
+                {
+                    <input type="radio" value="@choice.ChoiceID" name="@question.QuestionID" style="font-size: 18px"/> @Html.DisplayFor(choiceItem => choice.ChoiceText) <br />
+                }
+            }
+
+            count++;
+
+            <div style="height: 20px"></div>
+
+        }
+        <input type="hidden" name="questionsCount_@Model.questions.Count" />
+    }
+
+
+    <input type="submit" value="Submit" />
+</form>
+
+</div>

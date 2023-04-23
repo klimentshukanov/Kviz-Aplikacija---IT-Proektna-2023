@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Kviz_Aplikacija___IT_Proektna_2023.Models.Quiz>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div style="height: 40px"></div>
+
+<div class="centralen-kontent">
+    <table class="table" >
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.QuizName)
+            </th>
+            <th></th>
+        </tr>
+
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuizName)
+                </td>
+                <td>
+                    @Html.ActionLink("Solve Quiz", "Solve", "Quiz", new { id = item.QuizID }, null)
+
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <span>|</span>
+                        @Html.ActionLink("Edit Quiz", "Edit", "Quiz", new { id = item.QuizID }, null) <span>|</span>
+                        @Html.ActionLink("Delete Quiz", "Delete", "Quiz", new { id = item.QuizID }, null)
+                    }
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <div style="height: 30px"></div>
+
+    <p>
+        @if (User.IsInRole("Administrator"))
+        {
+            @Html.ActionLink("Create New", "Create", "Quiz")
+        }
+
+    </p>
+
+</div>
